@@ -199,7 +199,19 @@
     <Compile Include="Models\Musico.cs">
       <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Usuario.cs">
+      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioAdmin.cs">
       <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Valoracion.cs">

@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\cubel\source\repos\WebApplicationApiArmonii\WebApplicationApiArmonii\Models\ModelArmoniiSQL.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\CEP-TARDA\Source\Repos\Armonii_Api\WebApplicationApiArmonii\Models\ModelArmoniiSQL.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

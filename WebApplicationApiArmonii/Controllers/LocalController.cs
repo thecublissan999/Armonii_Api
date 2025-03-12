@@ -39,7 +39,6 @@ namespace WebApplicationApiArmonii.Controllers
                              l.Usuario.longitud,
                              l.Usuario.fechaRegistro,
                              l.Usuario.estado,
-                             l.Usuario.edad,
                              l.Usuario.valoracion,
                              l.Usuario.tipo
                          }

@@ -24,7 +24,6 @@ namespace WebApplicationApiArmonii.Controllers
                      .Include(m => m.Usuario) // Cargar los datos del usuario asociado
                      .Select(m => new {
                          m.id,
-                         m.nombreArtistico,
                          m.genero,
                          m.biografia,
                          Usuario = new
@@ -37,7 +36,6 @@ namespace WebApplicationApiArmonii.Controllers
                              m.Usuario.longitud,
                              m.Usuario.fechaRegistro,
                              m.Usuario.estado,
-                             m.Usuario.edad,
                              m.Usuario.valoracion,
                              m.Usuario.tipo
                          }
