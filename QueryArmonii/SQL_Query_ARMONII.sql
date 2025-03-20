@@ -41,7 +41,7 @@ CREATE TABLE Usuario (
 );
 
 CREATE TABLE Musico (
-    id INT PRIMARY KEY,
+    id INT IDENTITY(1,1) PRIMARY KEY,
     apodo VARCHAR(100),
 	apellido VARCHAR(50),
     genero VARCHAR(50),
@@ -53,7 +53,7 @@ CREATE TABLE Musico (
 );
 
 CREATE TABLE Local (
-    id INT PRIMARY KEY,
+    id INT IDENTITY(1,1) PRIMARY KEY,
     direccion VARCHAR(255) NOT NULL,
     tipo_local VARCHAR(100),
 	descripcion Text,
@@ -160,22 +160,22 @@ VALUES
 
 -- Insertar 5 músicos correspondientes
 -- Insertar 5 músicos correspondientes
-INSERT INTO Musico (id, apodo, apellido, generoMusical, biografia, edad, imagen, idUsuario)
+INSERT INTO Musico ( apodo, apellido, genero, generoMusical, biografia, edad, imagen, idUsuario)
 VALUES 
-(1, 'Carlos Music', 'Pérez', 'Pop', 'Cantante de música pop con 10 años de carrera', 29, 'imagen_carlos.jpg', 1),
-(2, 'Laura Band', 'Márquez', 'Rock', 'Banda de rock alternativo fundada en 2015', 18, 'imagen_laura.jpg', 2),
-(3, 'Luis Groove', 'Gómez', 'Jazz', 'Músico de jazz con un estilo único de fusión', 35, 'imagen_luis.jpg', 3),
-(4, 'Sara Soul', 'López', 'R&B', 'Cantante y compositora de soul y R&B', 67, 'imagen_sara.jpg', 4),
-(5, 'Pedro Rock', 'Jiménez', 'Hard Rock', 'Banda de rock clásico con influencias de los 70', 52, 'imagen_pedro.jpg', 5);
+( 'Carlos Music', 'Pérez', 'Masculino','Pop', 'Cantante de música pop con 10 años de carrera', 29, 'imagen_carlos.jpg', 1),
+( 'Laura Band', 'Márquez', 'Femenino','Rock', 'Banda de rock alternativo fundada en 2015', 18, 'imagen_laura.jpg', 2),
+( 'Luis Groove', 'Gómez', 'Otro','Jazz', 'Músico de jazz con un estilo único de fusión', 35, 'imagen_luis.jpg', 3),
+( 'Sara Soul', 'López', 'Femenino','R&B', 'Cantante y compositora de soul y R&B', 67, 'imagen_sara.jpg', 4),
+( 'Pedro Rock', 'Jiménez', 'Masculino','Hard Rock', 'Banda de rock clásico con influencias de los 70', 52, 'imagen_pedro.jpg', 5);
 
 -- Insertar 5 locales correspondientes
-INSERT INTO Local (id, direccion, tipo_local, descripcion, imagen, horarioApertura, horarioCierre, idUsuario)
+INSERT INTO Local ( direccion, tipo_local, descripcion, imagen, horarioApertura, horarioCierre, idUsuario)
 VALUES 
-(1, 'Calle Ficticia 101', 'Bar', 'Un acogedor bar de barrio con música en vivo', 'imagen_bar.jpg', '18:00', '03:00', 6),
-(2, 'Avenida Principal 202', 'Café', 'Café con ambiente relajado para disfrutar de una buena conversación', 'imagen_cafe.jpg', '07:00', '23:00', 7),
-(3, 'Calle de la Reforma 303', 'Restaurante', 'Restaurante elegante con una oferta culinaria internacional', 'imagen_restaurante.jpg', '12:00', '23:00', 8),
-(4, 'Avenida del Teatro 404', 'Teatro', 'Teatro histórico con obras y conciertos en vivo', 'imagen_teatro.jpg', '16:00', '23:00', 9),
-(5, 'Calle Central 505', 'Sala de conciertos', 'Sala de conciertos de música en vivo, ideal para bandas emergentes', 'imagen_sala.jpg', '19:00', '02:00', 10);
+('Calle Ficticia 101', 'Bar', 'Un acogedor bar de barrio con música en vivo', 'imagen_bar.jpg', '18:00', '03:00', 6),
+('Avenida Principal 202', 'Café', 'Café con ambiente relajado para disfrutar de una buena conversación', 'imagen_cafe.jpg', '07:00', '23:00', 7),
+('Calle de la Reforma 303', 'Restaurante', 'Restaurante elegante con una oferta culinaria internacional', 'imagen_restaurante.jpg', '12:00', '23:00', 8),
+('Avenida del Teatro 404', 'Teatro', 'Teatro histórico con obras y conciertos en vivo', 'imagen_teatro.jpg', '16:00', '23:00', 9),
+('Calle Central 505', 'Sala de conciertos', 'Sala de conciertos de música en vivo, ideal para bandas emergentes', 'imagen_sala.jpg', '19:00', '02:00', 10);
 
 
 -- Insertar eventos (con los usuarios como locales y músicos)
