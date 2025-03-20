@@ -375,13 +375,7 @@
           <Property Name="estado" Type="Boolean" />
           <Property Name="valoracion" Type="Double" />
           <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Local" Relationship="Self.FK_Local_Usuario" FromRole="Usuario" ToRole="Local" />
-          <NavigationProperty Name="Mensaje" Relationship="Self.FK_Mensaje_UsuarioLocal" FromRole="Usuario" ToRole="Mensaje" />
-          <NavigationProperty Name="Mensaje1" Relationship="Self.FK_Mensaje_UsuarioMusico" FromRole="Usuario" ToRole="Mensaje" />
-          <NavigationProperty Name="Musico" Relationship="Self.FK_Musico_Usuario" FromRole="Usuario" ToRole="Musico" />
-          <NavigationProperty Name="Local1" Relationship="ArmoniiModel.FK_Local_Usuario1" FromRole="Usuario" ToRole="Local" />
-          <NavigationProperty Name="Musico1" Relationship="ArmoniiModel.FK_Musico_Usuario1" FromRole="Usuario" ToRole="Musico" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Valoracion">
           <Key>
             <PropertyRef Name="id" />

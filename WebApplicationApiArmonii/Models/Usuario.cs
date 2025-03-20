@@ -14,15 +14,6 @@ namespace WebApplicationApiArmonii.Models
     
     public partial class Usuario
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
-        {
-            this.Mensaje = new HashSet<Mensaje>();
-            this.Mensaje1 = new HashSet<Mensaje>();
-            this.Local1 = new HashSet<Local>();
-            this.Musico1 = new HashSet<Musico>();
-        }
-    
         public int id { get; set; }
         public string nombre { get; set; }
         public string correo { get; set; }
@@ -34,16 +25,5 @@ namespace WebApplicationApiArmonii.Models
         public Nullable<bool> estado { get; set; }
         public Nullable<double> valoracion { get; set; }
         public string tipo { get; set; }
-    
-        public virtual Local Local { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Mensaje> Mensaje { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Mensaje> Mensaje1 { get; set; }
-        public virtual Musico Musico { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Local> Local1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Musico> Musico1 { get; set; }
     }
 }
