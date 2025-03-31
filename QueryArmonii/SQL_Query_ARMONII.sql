@@ -161,11 +161,11 @@ VALUES
 -- Insertar músicos correspondientes
 INSERT INTO Musico (apodo, apellido, genero, edad, biografia, imagen, idUsuario)
 VALUES 
-('Carlos Music', 'Pérez', 'Masculino', 29, 'Cantante de música pop con 10 años de carrera', 'imagen_carlos.jpg', 1),
-('Laura Band', 'Márquez', 'Femenino', 18, 'Banda de rock alternativo fundada en 2015', 'imagen_laura.jpg', 2),
+('Carlos Music', 'Pérez', 'Hombre', 29, 'Cantante de música pop con 10 años de carrera', 'imagen_carlos.jpg', 1),
+('Laura Band', 'Márquez', 'Mujer', 18, 'Banda de rock alternativo fundada en 2015', 'imagen_laura.jpg', 2),
 ('Luis Groove', 'Gómez', 'Otro', 35, 'Músico de jazz con un estilo único de fusión', 'imagen_luis.jpg', 3),
-('Sara Soul', 'López', 'Femenino', 67, 'Cantante y compositora de soul y R&B', 'imagen_sara.jpg', 4),
-('Pedro Rock', 'Jiménez', 'Masculino', 52, 'Banda de rock clásico con influencias de los 70', 'imagen_pedro.jpg', 5);
+('Sara Soul', 'López', 'Mujer', 67, 'Cantante y compositora de soul y R&B', 'imagen_sara.jpg', 4),
+('Pedro Rock', 'Jiménez', 'Hombre', 52, 'Banda de rock clásico con influencias de los 70', 'imagen_pedro.jpg', 5);
 
 -- Asociar músicos con géneros
 INSERT INTO GenerosMusicos (idGenero, idMusico) 
