@@ -33,8 +33,10 @@ namespace WebApplicationApiArmonii.Models
         public virtual DbSet<Musico> Musico { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Valoracion> Valoracion { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<UsuarioAdmin> UsuarioAdmin { get; set; }
+        public virtual DbSet<Generos> Generos { get; set; }
+        public virtual DbSet<GenerosMusicos> GenerosMusicos { get; set; }
+        public virtual DbSet<Permisos> Permisos { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

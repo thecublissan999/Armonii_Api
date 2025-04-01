@@ -176,6 +176,12 @@
     <Compile Include="Models\Evento.cs">
       <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Generos.cs">
+      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GenerosMusicos.cs">
+      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Local.cs">
       <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
     </Compile>
@@ -200,13 +206,13 @@
     <Compile Include="Models\Musico.cs">
       <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Permisos.cs">
+      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">

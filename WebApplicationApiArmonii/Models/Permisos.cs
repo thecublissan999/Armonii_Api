@@ -12,15 +12,18 @@ namespace WebApplicationApiArmonii.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UsuarioAdmin
+    public partial class Permisos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Permisos()
+        {
+            this.UsuarioAdmin = new HashSet<UsuarioAdmin>();
+        }
+    
         public int id { get; set; }
         public string nombre { get; set; }
-        public string correo { get; set; }
-        public string contrasenya { get; set; }
-        public string telefono { get; set; }
-        public Nullable<int> permiso { get; set; }
     
-        public virtual Permisos Permisos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsuarioAdmin> UsuarioAdmin { get; set; }
     }
 }

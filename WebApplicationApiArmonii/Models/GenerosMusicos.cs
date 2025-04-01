@@ -12,15 +12,10 @@ namespace WebApplicationApiArmonii.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UsuarioAdmin
+    public partial class GenerosMusicos
     {
         public int id { get; set; }
-        public string nombre { get; set; }
-        public string correo { get; set; }
-        public string contrasenya { get; set; }
-        public string telefono { get; set; }
-        public Nullable<int> permiso { get; set; }
-    
-        public virtual Permisos Permisos { get; set; }
+        public Nullable<int> idGenero { get; set; }
+        public Nullable<int> idMusico { get; set; }
     }
 }
