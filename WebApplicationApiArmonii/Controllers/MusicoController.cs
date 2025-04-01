@@ -67,11 +67,39 @@ namespace WebApplicationApiArmonii.Controllers
         [ResponseType(typeof(Musico))]
         public async Task<IHttpActionResult> GetMusico(int id)
         {
-            Musico musico = await db.Musico.FindAsync(id);
-            if (musico == null)
-            {
-                return NotFound();
-            }
+            var musico = from m in db.Musico
+                            where m.id == id 
+                            join u in db.Usuario on m.idUsuario equals u.id into usuarioJoin
+                            from usuario in usuarioJoin.DefaultIfEmpty() // LEFT JOIN
+                            select new
+                            {
+                                m.id,
+                                m.idUsuario,
+                                m.genero,
+                                m.biografia,
+                                m.apellido,
+                                m.apodo,
+                                m.edad,
+                                m.imagen,
+
+                                // Propiedades del usuario
+                                nombre = usuario != null ? usuario.nombre : null,
+                                correo = usuario != null ? usuario.correo : null,
+                                contrasenya = usuario != null ? usuario.contrasenya : null,
+                                telefono = usuario != null ? usuario.telefono : null,
+                                latitud = usuario != null ? usuario.latitud : (double?)null,
+                                longitud = usuario != null ? usuario.longitud : (double?)null,
+                                fechaRegistro = usuario != null ? usuario.fechaRegistro : (DateTime?)null,
+                                estado = usuario != null ? usuario.estado : (bool?)null,
+                                valoracion = usuario != null ? usuario.valoracion : (double?)null,
+                                tipo = usuario != null ? usuario.tipo : null,
+
+                                // Géneros musicales asociados con el musico
+                                generosMusicales = db.GenerosMusicos
+                                    .Where(gm => gm.idMusico == m.id)
+                                    .Join(db.Generos, gm => gm.idGenero, g => g.id, (gm, g) => g.genero)
+                                    .ToList() // Obtiene la lista de nombres de géneros musicales asociados con el musico
+                            };
 
             return Ok(musico);
         }
