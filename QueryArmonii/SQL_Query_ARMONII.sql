@@ -163,7 +163,7 @@ INSERT INTO Musico (apodo, apellido, genero, edad, biografia, imagen, idUsuario)
 VALUES 
 ('Carlos Music', 'Pérez', 'Hombre', 29, 'Cantante de música pop con 10 años de carrera', 'imagen_carlos.jpg', 1),
 ('Laura Band', 'Márquez', 'Mujer', 18, 'Banda de rock alternativo fundada en 2015', 'imagen_laura.jpg', 2),
-('Luis Groove', 'Gómez', 'Otro', 35, 'Músico de jazz con un estilo único de fusión', 'imagen_luis.jpg', 3),
+('Luis Groove', 'Gómez', 'Otros', 35, 'Músico de jazz con un estilo único de fusión', 'imagen_luis.jpg', 3),
 ('Sara Soul', 'López', 'Mujer', 67, 'Cantante y compositora de soul y R&B', 'imagen_sara.jpg', 4),
 ('Pedro Rock', 'Jiménez', 'Hombre', 52, 'Banda de rock clásico con influencias de los 70', 'imagen_pedro.jpg', 5);
 
@@ -189,11 +189,11 @@ VALUES
 -- Insertar eventos
 INSERT INTO Evento (nombre, fecha, descripcion, idLocal, idMusico, duracion)
 VALUES 
-('Concierto Carlos Music', '2025-04-01 20:00:00', 'Un gran show pop en vivo', 1, 1, 120),
-('Laura Band en vivo', '2025-04-02 21:00:00', 'Un recital de rock alternativo', 2, 2, 90),
-('Luis Groove Jazz Night', '2025-04-03 19:30:00', 'Jazz en vivo para relajarse', 3, 3, 120),
-('Sara Soul & Friends', '2025-04-04 22:00:00', 'Noche de R&B en el escenario', 4, 4, 110),
-('Pedro Rock en concierto', '2025-04-05 23:00:00', 'Rock en vivo con la banda más electrizante', 5, 5, 150);
+('Concierto Carlos Music', '2025-01-04', 'Un gran show pop en vivo', 1, 1, 120),
+('Laura Band en vivo', '2025-02-04', 'Un recital de rock alternativo', 2, 2, 90),
+('Luis Groove Jazz Night', '2025-03-04', 'Jazz en vivo para relajarse', 3, 3, 120),
+('Sara Soul & Friends', '2025-04-04', 'Noche de R&B en el escenario', 4, 4, 110),
+('Pedro Rock en concierto', '2025-05-04', 'Rock en vivo con la banda más electrizante', 5, 5, 150);
 
 -- Insertar mensajes entre usuarios
 INSERT INTO Mensaje (idUsuarioLocal, idUsuarioMusico, mensaje, emisor)
