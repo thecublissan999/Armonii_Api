@@ -21,28 +21,33 @@ namespace WebApplicationApiArmonii.Controllers
         // GET: api/Local
         public IQueryable<object> GetLocal()
         {
-            return db.Local
-                     .Include(l => l.Usuario) // Cargar los datos del usuario asociado
-                     .Select(l => new {
-                         l.id,
-                         l.direccion,
-                         l.tipo_local,
-                         l.horarioApertura,
-                         l.horarioCierre,
-                         Usuario = new
-                         {
-                             l.Usuario.nombre,
-                             l.Usuario.correo,
-                             l.Usuario.contrasenya,
-                             l.Usuario.telefono,
-                             l.Usuario.latitud,
-                             l.Usuario.longitud,
-                             l.Usuario.fechaRegistro,
-                             l.Usuario.estado,
-                             l.Usuario.valoracion,
-                             l.Usuario.tipo
-                         }
-                     });
+           var locales = from m in db.Local
+                                    join u in db.Usuario on m.idUsuario equals u.id into usuarioJoin
+                                    from usuario in usuarioJoin.DefaultIfEmpty() // LEFT JOIN
+                                    select new
+                                    {
+                                        m.id,
+                                        m.idUsuario,
+                                        m.direccion,
+                                        m.tipo_local,
+                                        m.horarioApertura,
+                                        m.horarioCierre,
+                                        m.imagen,
+
+                                        // Propiedades del usuario
+                                        nombre = usuario != null ? usuario.nombre : null,
+                                        correo = usuario != null ? usuario.correo : null,
+                                        contrasenya = usuario != null ? usuario.contrasenya : null,
+                                        telefono = usuario != null ? usuario.telefono : null,
+                                        latitud = usuario != null ? usuario.latitud : (double?)null,
+                                        longitud = usuario != null ? usuario.longitud : (double?)null,
+                                        fechaRegistro = usuario != null ? usuario.fechaRegistro : (DateTime?)null,
+                                        estado = usuario != null ? usuario.estado : (bool?)null,
+                                        valoracion = usuario != null ? usuario.valoracion : (double?)null,
+                                        tipo = usuario != null ? usuario.tipo : null,
+                                    };
+
+            return locales;
         }
 
 
