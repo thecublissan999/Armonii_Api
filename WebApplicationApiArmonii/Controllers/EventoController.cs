@@ -31,8 +31,8 @@ namespace WebApplicationApiArmonii.Controllers
                     e.descripcion,
                     e.estado,
                     e.duracion,
-                    Local = new { e.Local.id},
-                    Musico = new { e.Musico.id }
+                    e.idLocal,
+                    e.idMusico
                 })
                 .ToList();
 
