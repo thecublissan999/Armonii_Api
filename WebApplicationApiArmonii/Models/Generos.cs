@@ -14,7 +14,16 @@ namespace WebApplicationApiArmonii.Models
     
     public partial class Generos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Generos()
+        {
+            this.GenerosMusicos = new HashSet<GenerosMusicos>();
+        }
+    
         public int id { get; set; }
         public string genero { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GenerosMusicos> GenerosMusicos { get; set; }
     }
 }

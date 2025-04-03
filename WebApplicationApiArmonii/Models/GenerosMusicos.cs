@@ -17,5 +17,8 @@ namespace WebApplicationApiArmonii.Models
         public int id { get; set; }
         public Nullable<int> idGenero { get; set; }
         public Nullable<int> idMusico { get; set; }
+    
+        public virtual Generos Generos { get; set; }
+        public virtual Musico Musico { get; set; }
     }
 }

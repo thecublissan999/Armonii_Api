@@ -170,6 +170,7 @@
     <Compile Include="Controllers\MusicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DTO\DataTransferObjectMusico.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,12 +210,6 @@
     <Compile Include="Models\Permisos.cs">
       <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
     </Compile>
@@ -248,8 +243,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\ModelArmoniiSQL.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelArmoniiSQL.Context.cs</LastGenOutput>
       <DependentUpon>ModelArmoniiSQL.edmx</DependentUpon>
+      <LastGenOutput>ModelArmoniiSQL.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ModelArmoniiSQL.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

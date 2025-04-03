@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WebApplicationApiArmonii.DTO;
 using WebApplicationApiArmonii.Models;
 
 namespace WebApplicationApiArmonii.Controllers
@@ -140,33 +141,49 @@ namespace WebApplicationApiArmonii.Controllers
         }
 
         // POST: api/Musico
-        [ResponseType(typeof(Musico))]
-        public async Task<IHttpActionResult> PostMusico(Musico musico)
+        [ResponseType(typeof(bool))]
+        public Boolean PostMusico(DataTransferObjectMusico musicoDTO)
         {
-            if (!ModelState.IsValid)
+            Usuario usuario = new Usuario
             {
-                return BadRequest(ModelState);
+                nombre = musicoDTO.Nombre,
+                correo = musicoDTO.Correo,
+                contrasenya = musicoDTO.Contrasenya,
+                telefono = musicoDTO.Telefono,
+                latitud = musicoDTO.Latitud,
+                longitud = musicoDTO.Longitud,
+                fechaRegistro = DateTime.Now, 
+                estado = musicoDTO.Estado,
+                valoracion = musicoDTO.Valoracion,
+                tipo = "Musico"
+            };
+
+            db.Usuario.Add(usuario);
+            db.SaveChanges();
+
+            Usuario user = db.Usuario.FirstOrDefault(u => u.correo == usuario.correo);
+            
+            // Verifica que el ID del usuario haya sido generado
+            if (usuario.id == 0)
+            {
+                throw new InvalidOperationException("El ID del usuario no fue generado correctamente.");
             }
+
+            Musico musico = new Musico
+            {
+                apodo = musicoDTO.Apodo,
+                apellido = musicoDTO.Apellido,
+                genero = musicoDTO.Genero,
+                edad = musicoDTO.Edad,
+                biografia = musicoDTO.Biografia,
+                imagen = musicoDTO.Imagen,
+                idUsuario = user.id
+            };
 
             db.Musico.Add(musico);
+            db.SaveChanges();
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (MusicoExists(musico.id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = musico.id }, musico);
+            return true;
         }
 
         // DELETE: api/Musico/5

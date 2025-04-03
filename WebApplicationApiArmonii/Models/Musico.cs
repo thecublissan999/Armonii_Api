@@ -11,15 +11,9 @@ namespace WebApplicationApiArmonii.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Musico
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-
-        public Musico()
-        {
-
-        }
         public int id { get; set; }
         public string apodo { get; set; }
         public string apellido { get; set; }
@@ -28,13 +22,5 @@ namespace WebApplicationApiArmonii.Models
         public string biografia { get; set; }
         public string imagen { get; set; }
         public Nullable<int> idUsuario { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Evento> Evento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Generos> generos { get; set; }
-        public virtual Usuario Usuario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Valoracion> Valoracion { get; set; }
     }
 }
