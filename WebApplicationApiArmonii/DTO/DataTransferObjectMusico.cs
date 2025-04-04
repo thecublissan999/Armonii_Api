@@ -8,32 +8,33 @@ namespace WebApplicationApiArmonii.DTO
     public class DataTransferObjectMusico
     {
 
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Correo { get; set; }
-        public string Contrasenya { get; set; }
-        public string Telefono { get; set; }
-        public double? Latitud { get; set; }
-        public double? Longitud { get; set; }
-        public DateTime? FechaRegistro { get; set; }
-        public bool? Estado { get; set; }
-        public double? Valoracion { get; set; }
-        public string Tipo { get; set; }
+        public int id { get; set; }
+        public string nombre { get; set; }
+        public string correo { get; set; }
+        public string contrasenya { get; set; }
+        public string telefono { get; set; }
+        public double? latitud { get; set; }
+        public double? longitud { get; set; }
+        public DateTime? fechaRegistro { get; set; }
+        public bool? estado { get; set; }
+        public double? valoracion { get; set; }
+        public string tipo { get; set; }
 
         // Musico
-        public string Apodo { get; set; }
-        public string Apellido { get; set; }
-        public string Genero { get; set; }
-        public int? Edad { get; set; }
-        public string Biografia { get; set; }
-        public string Imagen { get; set; }
-        public int IdUsuario { get; set; }
+        public string apodo { get; set; }
+        public string apellido { get; set; }
+        public string genero { get; set; }
+        public int? edad { get; set; }
+        public string biografia { get; set; }
+        public string imagen { get; set; }
+        public int idUsuario { get; set; }
+        public List<String> generosMusicales { get; set; }
 
         // Local
-        public string Direccion { get; set; }
-        public string TipoLocal { get; set; }
+        public string direccion { get; set; }
+        public string tipoLocal { get; set; }
         public TimeSpan? HorarioApertura { get; set; }
         public TimeSpan? HorarioCierre { get; set; }
-        public string Descripcion { get; set; }
+        public string descripcion { get; set; }
     }
 }

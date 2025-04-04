@@ -22,5 +22,6 @@ namespace WebApplicationApiArmonii.Models
         public string biografia { get; set; }
         public string imagen { get; set; }
         public Nullable<int> idUsuario { get; set; }
+        public List<String> generosMusicales { get; set; }
     }
 }

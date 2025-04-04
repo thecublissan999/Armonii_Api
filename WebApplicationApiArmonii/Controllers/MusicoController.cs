@@ -105,6 +105,47 @@ namespace WebApplicationApiArmonii.Controllers
             return Ok(musico);
         }
 
+        // GET: api/Musico/correo
+        [ResponseType(typeof(DataTransferObjectMusico))]
+        public async Task<IHttpActionResult> GetMusicoCorreo(string correo)
+        {
+            var musico = await (from u in db.Usuario
+                                where u.correo == correo
+                                join m in db.Musico on u.id equals m.idUsuario into usuarioJoin
+                                from usuario in usuarioJoin.DefaultIfEmpty() // LEFT JOIN
+                                select new DataTransferObjectMusico
+                                {
+                                    id = u.id,
+                                    nombre = u.nombre,
+                                    correo = u.correo,
+                                    contrasenya = u.contrasenya,
+                                    telefono = u.telefono,
+                                    latitud = u.latitud,
+                                    longitud = u.longitud,
+                                    fechaRegistro = u.fechaRegistro,
+                                    estado = u.estado,
+                                    valoracion = u.valoracion,
+                                    tipo = u.tipo,
+
+                                    // Musico
+                                    apodo = usuario != null ? usuario.apodo : null,
+                                    apellido = usuario != null ? usuario.apellido : null,
+                                    genero = usuario != null ? usuario.genero : null,
+                                    edad = usuario != null ? usuario.edad : null,
+                                    biografia = usuario != null ? usuario.biografia : null,
+                                    imagen = usuario != null ? usuario.imagen : null,
+                                    idUsuario = usuario != null ? usuario.idUsuario ?? 0 : 0,
+                                }).FirstOrDefaultAsync(); // Ejecuta la consulta y obtiene un solo resultado
+
+            if (musico == null)
+            {
+                return NotFound(); // Retorna 404 si no se encuentra
+            }
+
+            return Ok(musico);
+        }
+
+
         // PUT: api/Musico/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutMusico(int id, Musico musico)
@@ -146,15 +187,15 @@ namespace WebApplicationApiArmonii.Controllers
         {
             Usuario usuario = new Usuario
             {
-                nombre = musicoDTO.Nombre,
-                correo = musicoDTO.Correo,
-                contrasenya = musicoDTO.Contrasenya,
-                telefono = musicoDTO.Telefono,
-                latitud = musicoDTO.Latitud,
-                longitud = musicoDTO.Longitud,
+                nombre = musicoDTO.nombre,
+                correo = musicoDTO.correo,
+                contrasenya = musicoDTO.contrasenya,
+                telefono = musicoDTO.telefono,
+                latitud = musicoDTO.latitud,
+                longitud = musicoDTO.longitud,
                 fechaRegistro = DateTime.Now, 
-                estado = musicoDTO.Estado,
-                valoracion = musicoDTO.Valoracion,
+                estado = musicoDTO.estado,
+                valoracion = musicoDTO.valoracion,
                 tipo = "Musico"
             };
 
@@ -169,15 +210,21 @@ namespace WebApplicationApiArmonii.Controllers
                 throw new InvalidOperationException("El ID del usuario no fue generado correctamente.");
             }
 
+
+
             Musico musico = new Musico
             {
-                apodo = musicoDTO.Apodo,
-                apellido = musicoDTO.Apellido,
-                genero = musicoDTO.Genero,
-                edad = musicoDTO.Edad,
-                biografia = musicoDTO.Biografia,
-                imagen = musicoDTO.Imagen,
-                idUsuario = user.id
+                apodo = musicoDTO.apodo,
+                apellido = musicoDTO.apellido,
+                genero = musicoDTO.genero,
+                edad = musicoDTO.edad,
+                biografia = musicoDTO.biografia,
+                imagen = musicoDTO.imagen,
+                idUsuario = user.id,
+                generosMusicales = db.Generos // Esto no hace nada, pero funciona, no tocar
+                                    .Where(g => musicoDTO.generosMusicales.Contains(g.genero))
+                                    .Select(g => g.genero)
+                                    .ToList()
             };
 
             db.Musico.Add(musico);
