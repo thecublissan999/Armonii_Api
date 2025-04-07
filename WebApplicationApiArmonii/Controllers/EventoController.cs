@@ -70,32 +70,25 @@ namespace WebApplicationApiArmonii.Controllers
             return Ok(evento);
         }
 
-        // POST: api/Eventoes
-        [ResponseType(typeof(Evento))]
-        public async Task<IHttpActionResult> PostEvento(Evento evento)
+        // POST: api/Evento
+        [ResponseType(typeof(bool))]
+        public Boolean PostEvento(Evento evento)
         {
-            if (!ModelState.IsValid)
+            Evento eventoNuevo = new Evento
             {
-                return BadRequest(ModelState);
-            }
-
-            db.Evento.Add(evento);
-            await db.SaveChangesAsync();
-
-            // Devolver una respuesta simplificada
-            var response = new
-            {
-                evento.id,
-                evento.nombre,
-                evento.fecha,
-                evento.descripcion,
-                evento.estado,
-                evento.duracion,
-                Local = new { evento.Local.id,},
-                Musico = new { evento.Musico.id}
+                nombre = evento.nombre,
+                fecha = evento.fecha,
+                descripcion = evento.descripcion,
+                estado = evento.estado,
+                duracion = evento.duracion,
+                idLocal = evento.idLocal,
+                idMusico = evento.idMusico
             };
 
-            return CreatedAtRoute("DefaultApi", new { id = evento.id }, response);
+            db.Evento.Add(eventoNuevo);
+            db.SaveChanges();
+
+            return true;
         }
 
         // PUT: api/Eventoes/5
