@@ -174,50 +174,50 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ArmoniiEntities1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArmoniiEntities1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ArmoniiEntities1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ArmoniiEntities1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArmoniiEntities1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Evento.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Generos.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GenerosMusicos.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Local.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Mensaje.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelArmoniiSQL.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelArmoniiSQL.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelArmoniiSQL.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelArmoniiSQL.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelArmoniiSQL.edmx</DependentUpon>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Musico.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Permisos.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UsuarioAdmin.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Valoracion.cs">
-      <DependentUpon>ModelArmoniiSQL.tt</DependentUpon>
+      <DependentUpon>ArmoniiEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -241,15 +241,15 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Models\ModelArmoniiSQL.Context.tt">
+    <Content Include="Models\ArmoniiEntities1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelArmoniiSQL.edmx</DependentUpon>
-      <LastGenOutput>ModelArmoniiSQL.Context.cs</LastGenOutput>
+      <DependentUpon>ArmoniiEntities1.edmx</DependentUpon>
+      <LastGenOutput>ArmoniiEntities1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModelArmoniiSQL.tt">
+    <Content Include="Models\ArmoniiEntities1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelArmoniiSQL.edmx</DependentUpon>
-      <LastGenOutput>ModelArmoniiSQL.cs</LastGenOutput>
+      <DependentUpon>ArmoniiEntities1.edmx</DependentUpon>
+      <LastGenOutput>ArmoniiEntities1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -276,12 +276,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\ModelArmoniiSQL.edmx">
+    <EntityDeploy Include="Models\ArmoniiEntities1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelArmoniiSQL.Designer.cs</LastGenOutput>
+      <LastGenOutput>ArmoniiEntities1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ModelArmoniiSQL.edmx.diagram">
-      <DependentUpon>ModelArmoniiSQL.edmx</DependentUpon>
+    <Content Include="Models\ArmoniiEntities1.edmx.diagram">
+      <DependentUpon>ArmoniiEntities1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />

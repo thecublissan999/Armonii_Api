@@ -14,7 +14,7 @@
           <Property Name="fecha" Type="datetime" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="1000" />
           <Property Name="idLocal" Type="int" Nullable="false" />
-          <Property Name="idMusico" Type="int" Nullable="false" />
+          <Property Name="idMusico" Type="int" />
           <Property Name="estado" Type="bit" />
           <Property Name="duracion" Type="int" Nullable="false" />
         </EntityType>
@@ -131,7 +131,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Evento__idMusico__5165187F">
-          <End Role="Musico" Type="Self.Musico" Multiplicity="1" />
+          <End Role="Musico" Type="Self.Musico" Multiplicity="0..1" />
           <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Musico">
@@ -336,12 +336,9 @@
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="idLocal" Type="Int32" Nullable="false" />
-          <Property Name="idMusico" Type="Int32" Nullable="false" />
+          <Property Name="idMusico" Type="Int32" />
           <Property Name="estado" Type="Boolean" />
           <Property Name="duracion" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Local" Relationship="Self.FK__Evento__idLocal__5070F446" FromRole="Evento" ToRole="Local" />
-          <NavigationProperty Name="Musico" Relationship="Self.FK__Evento__idMusico__5165187F" FromRole="Evento" ToRole="Musico" />
-          <NavigationProperty Name="Valoracion" Relationship="Self.FK__Valoracio__idEve__5BE2A6F2" FromRole="Evento" ToRole="Valoracion" />
         </EntityType>
         <EntityType Name="Generos">
           <Key>
@@ -349,7 +346,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="genero" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="GenerosMusicos" Relationship="Self.FK__GenerosMu__idGen__48CFD27E" FromRole="Generos" ToRole="GenerosMusicos" />
         </EntityType>
         <EntityType Name="GenerosMusicos">
           <Key>
@@ -358,8 +354,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idGenero" Type="Int32" />
           <Property Name="idMusico" Type="Int32" />
-          <NavigationProperty Name="Generos" Relationship="Self.FK__GenerosMu__idGen__48CFD27E" FromRole="GenerosMusicos" ToRole="Generos" />
-          <NavigationProperty Name="Musico" Relationship="Self.FK__GenerosMu__idMus__49C3F6B7" FromRole="GenerosMusicos" ToRole="Musico" />
         </EntityType>
         <EntityType Name="Local">
           <Key>
@@ -384,8 +378,6 @@
           <Property Name="fechaEnvio" Type="DateTime" Precision="3" />
           <Property Name="mensaje1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="emisor" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Mensaje__idUsuar__5535A963" FromRole="Mensaje" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.FK__Mensaje__idUsuar__5629CD9C" FromRole="Mensaje" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Musico">
           <Key>
@@ -406,7 +398,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="UsuarioAdmin" Relationship="Self.FK__UsuarioAd__permi__3C69FB99" FromRole="Permisos" ToRole="UsuarioAdmin" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -434,7 +425,6 @@
           <Property Name="contrasenya" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="permiso" Type="Int32" />
-          <NavigationProperty Name="Permisos" Relationship="Self.FK__UsuarioAd__permi__3C69FB99" FromRole="UsuarioAdmin" ToRole="Permisos" />
         </EntityType>
         <EntityType Name="Valoracion">
           <Key>
@@ -449,9 +439,6 @@
           <Property Name="idLocal" Type="Int32" />
           <Property Name="idMusico" Type="Int32" />
           <Property Name="emisor" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Evento" Relationship="Self.FK__Valoracio__idEve__5BE2A6F2" FromRole="Valoracion" ToRole="Evento" />
-          <NavigationProperty Name="Local" Relationship="Self.FK__Valoracio__idLoc__5CD6CB2B" FromRole="Valoracion" ToRole="Local" />
-          <NavigationProperty Name="Musico" Relationship="Self.FK__Valoracio__idMus__5DCAEF64" FromRole="Valoracion" ToRole="Musico" />
         </EntityType>
         <Association Name="FK__Evento__idLocal__5070F446">
           <End Role="Local" Type="Self.Local" Multiplicity="1" />
@@ -466,7 +453,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Evento__idMusico__5165187F">
-          <End Role="Musico" Type="Self.Musico" Multiplicity="1" />
+          <End Role="Musico" Type="Self.Musico" Multiplicity="0..1" />
           <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Musico">
@@ -597,7 +584,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ArmoniiEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ArmoniiEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Evento" EntityType="Self.Evento" />
           <EntitySet Name="Generos" EntityType="Self.Generos" />
           <EntitySet Name="GenerosMusicos" EntityType="Self.GenerosMusicos" />
@@ -662,7 +649,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ArmoniiModelStoreContainer" CdmEntityContainer="ArmoniiEntities1">
+        <EntityContainerMapping StorageEntityContainer="ArmoniiModelStoreContainer" CdmEntityContainer="ArmoniiEntities2">
           <EntitySetMapping Name="Evento">
             <EntityTypeMapping TypeName="ArmoniiModel.Evento">
               <MappingFragment StoreEntitySet="Evento">

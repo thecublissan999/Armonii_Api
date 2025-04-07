@@ -20,8 +20,5 @@ namespace WebApplicationApiArmonii.Models
         public Nullable<System.DateTime> fechaEnvio { get; set; }
         public string mensaje1 { get; set; }
         public string emisor { get; set; }
-    
-        public virtual Usuario Usuario { get; set; }
-        public virtual Usuario Usuario1 { get; set; }
     }
 }

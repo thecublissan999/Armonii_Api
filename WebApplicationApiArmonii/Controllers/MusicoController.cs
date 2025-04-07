@@ -220,11 +220,11 @@ namespace WebApplicationApiArmonii.Controllers
                 edad = musicoDTO.edad,
                 biografia = musicoDTO.biografia,
                 imagen = musicoDTO.imagen,
-                idUsuario = user.id,
-                generosMusicales = db.Generos // Esto no hace nada, pero funciona, no tocar
+                idUsuario = user.id
+                /*generosMusicales = db.Generos // Esto no hace nada, pero funciona, no tocar
                                     .Where(g => musicoDTO.generosMusicales.Contains(g.genero))
                                     .Select(g => g.genero)
-                                    .ToList()
+                                    .ToList()*/
             };
 
             db.Musico.Add(musico);

@@ -14,24 +14,15 @@ namespace WebApplicationApiArmonii.Models
     
     public partial class Evento
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Evento()
-        {
-            this.Valoracion = new HashSet<Valoracion>();
-        }
-    
         public int id { get; set; }
         public string nombre { get; set; }
         public System.DateTime fecha { get; set; }
         public string descripcion { get; set; }
         public int idLocal { get; set; }
-        public int idMusico { get; set; }
+        public Nullable<int> idMusico { get; set; }
         public Nullable<bool> estado { get; set; }
         public int duracion { get; set; }
-    
         public virtual Local Local { get; set; }
-        public virtual Musico Musico { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Valoracion> Valoracion { get; set; }
+        public virtual Musico Musico { get; set; }  
     }
 }

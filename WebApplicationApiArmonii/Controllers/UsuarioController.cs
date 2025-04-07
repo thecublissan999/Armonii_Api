@@ -21,7 +21,7 @@ namespace WebApplicationApiArmonii.Controllers
         // GET: api/Usuario
         public IQueryable<Usuario> GetUsuario()
         {
-            db.Configuration.LazyLoadingEnabled = false;
+            //db.Configuration.LazyLoadingEnabled = false;
             return db.Usuario;
         }
 

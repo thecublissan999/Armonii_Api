@@ -23,9 +23,5 @@ namespace WebApplicationApiArmonii.Models
         public Nullable<int> idLocal { get; set; }
         public Nullable<int> idMusico { get; set; }
         public string emisor { get; set; }
-    
-        public virtual Evento Evento { get; set; }
-        public virtual Local Local { get; set; }
-        public virtual Musico Musico { get; set; }
     }
 }

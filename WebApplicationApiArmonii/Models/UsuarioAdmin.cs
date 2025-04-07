@@ -20,7 +20,5 @@ namespace WebApplicationApiArmonii.Models
         public string contrasenya { get; set; }
         public string telefono { get; set; }
         public Nullable<int> permiso { get; set; }
-    
-        public virtual Permisos Permisos { get; set; }
     }
 }
