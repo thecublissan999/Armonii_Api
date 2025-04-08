@@ -22,7 +22,5 @@ namespace WebApplicationApiArmonii.Models
         public Nullable<int> idMusico { get; set; }
         public Nullable<bool> estado { get; set; }
         public int duracion { get; set; }
-        public virtual Local Local { get; set; }
-        public virtual Musico Musico { get; set; }  
     }
 }

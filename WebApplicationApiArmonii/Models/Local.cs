@@ -22,6 +22,5 @@ namespace WebApplicationApiArmonii.Models
         public Nullable<System.TimeSpan> horarioApertura { get; set; }
         public Nullable<System.TimeSpan> horarioCierre { get; set; }
         public Nullable<int> idUsuario { get; set; }
-        public virtual Usuario Usuario { get; set; }
     }
 }

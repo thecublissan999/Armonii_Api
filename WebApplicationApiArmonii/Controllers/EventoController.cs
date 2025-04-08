@@ -56,9 +56,7 @@ namespace WebApplicationApiArmonii.Controllers
                     e.fecha,
                     e.descripcion,
                     e.estado,
-                    e.duracion,
-                    Local = new { e.Local.id},
-                    Musico = new { e.Musico.id}
+                    e.duracion
                 })
                 .FirstOrDefaultAsync();
 
@@ -147,9 +145,7 @@ namespace WebApplicationApiArmonii.Controllers
                 evento.fecha,
                 evento.descripcion,
                 evento.estado,
-                evento.duracion,
-                Local = new { evento.Local.id },
-                Musico = new { evento.Musico.id }
+                evento.duracion
             };
 
             return Ok(response);

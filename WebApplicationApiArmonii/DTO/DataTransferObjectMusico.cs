@@ -32,7 +32,7 @@ namespace WebApplicationApiArmonii.DTO
 
         // Local
         public string direccion { get; set; }
-        public string tipoLocal { get; set; }
+        public string tipo_local { get; set; }
         public TimeSpan? HorarioApertura { get; set; }
         public TimeSpan? HorarioCierre { get; set; }
         public string descripcion { get; set; }

@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WebApplicationApiArmonii.DTO;
 using WebApplicationApiArmonii.Models;
 
 namespace WebApplicationApiArmonii.Controllers
@@ -21,31 +22,32 @@ namespace WebApplicationApiArmonii.Controllers
         // GET: api/Local
         public IQueryable<object> GetLocal()
         {
-           var locales = from m in db.Local
-                                    join u in db.Usuario on m.idUsuario equals u.id into usuarioJoin
-                                    from usuario in usuarioJoin.DefaultIfEmpty() // LEFT JOIN
-                                    select new
-                                    {
-                                        m.id,
-                                        m.idUsuario,
-                                        m.direccion,
-                                        m.tipo_local,
-                                        m.horarioApertura,
-                                        m.horarioCierre,
-                                        m.imagen,
+            var locales = from m in db.Local
+                          join u in db.Usuario on m.idUsuario equals u.id into usuarioJoin
+                          from usuario in usuarioJoin.DefaultIfEmpty() // LEFT JOIN
+                          select new
+                          {
+                              m.id,
+                              m.idUsuario,
+                              m.direccion,
+                              m.descripcion,
+                              m.tipo_local,
+                              m.horarioApertura,
+                              m.horarioCierre,
+                              m.imagen,
 
-                                        // Propiedades del usuario
-                                        nombre = usuario != null ? usuario.nombre : null,
-                                        correo = usuario != null ? usuario.correo : null,
-                                        contrasenya = usuario != null ? usuario.contrasenya : null,
-                                        telefono = usuario != null ? usuario.telefono : null,
-                                        latitud = usuario != null ? usuario.latitud : (double?)null,
-                                        longitud = usuario != null ? usuario.longitud : (double?)null,
-                                        fechaRegistro = usuario != null ? usuario.fechaRegistro : (DateTime?)null,
-                                        estado = usuario != null ? usuario.estado : (bool?)null,
-                                        valoracion = usuario != null ? usuario.valoracion : (double?)null,
-                                        tipo = usuario != null ? usuario.tipo : null,
-                                    };
+                              // Propiedades del usuario
+                              nombre = usuario != null ? usuario.nombre : null,
+                              correo = usuario != null ? usuario.correo : null,
+                              contrasenya = usuario != null ? usuario.contrasenya : null,
+                              telefono = usuario != null ? usuario.telefono : null,
+                              latitud = usuario != null ? usuario.latitud : (double?)null,
+                              longitud = usuario != null ? usuario.longitud : (double?)null,
+                              fechaRegistro = usuario != null ? usuario.fechaRegistro : (DateTime?)null,
+                              estado = usuario != null ? usuario.estado : (bool?)null,
+                              valoracion = usuario != null ? usuario.valoracion : (double?)null,
+                              tipo = usuario != null ? usuario.tipo : null,
+                          };
 
             return locales;
         }
@@ -55,55 +57,72 @@ namespace WebApplicationApiArmonii.Controllers
         [ResponseType(typeof(Local))]
         public async Task<IHttpActionResult> GetLocal(int id)
         {
-            Local local = await db.Local.FindAsync(id);
-            if (local == null)
-            {
-                return NotFound();
-            }
+            var local = from m in db.Local
+                         where m.id == id
+                         join u in db.Usuario on m.idUsuario equals u.id into usuarioJoin
+                         from usuario in usuarioJoin.DefaultIfEmpty() // LEFT JOIN
+                         select new
+                         {
+                             m.id,
+                             m.idUsuario,
+                             m.direccion,
+                             m.descripcion,
+                             m.tipo_local,
+                             m.imagen,
+
+                             // Propiedades del usuario
+                             nombre = usuario != null ? usuario.nombre : null,
+                             correo = usuario != null ? usuario.correo : null,
+                             contrasenya = usuario != null ? usuario.contrasenya : null,
+                             telefono = usuario != null ? usuario.telefono : null,
+                             latitud = usuario != null ? usuario.latitud : (double?)null,
+                             longitud = usuario != null ? usuario.longitud : (double?)null,
+                             fechaRegistro = usuario != null ? usuario.fechaRegistro : (DateTime?)null,
+                             estado = usuario != null ? usuario.estado : (bool?)null,
+                             valoracion = usuario != null ? usuario.valoracion : (double?)null,
+                             tipo = usuario != null ? usuario.tipo : null,
+                         };
 
             return Ok(local);
         }
 
-
-        // GET: api/Local/correo/{correo}
-        [HttpGet]
-        [Route("api/Local/id/{id}")]
-        public async Task<IHttpActionResult> FindByCorreo(int id)
+        // GET: api/Local/correo
+        [ResponseType(typeof(DataTransferObjectMusico))]
+        public async Task<IHttpActionResult> GetLocalCorreo(string correo)
         {
-            IHttpActionResult result;
-            db.Configuration.LazyLoadingEnabled = false;
+            var musico = await (from u in db.Usuario
+                                where u.correo == correo
+                                join m in db.Local on u.id equals m.idUsuario into usuarioJoin
+                                from usuario in usuarioJoin.DefaultIfEmpty() // LEFT JOIN
+                                select new DataTransferObjectMusico
+                                {
+                                    id = u.id,
+                                    nombre = u.nombre,
+                                    correo = u.correo,
+                                    contrasenya = u.contrasenya,
+                                    telefono = u.telefono,
+                                    latitud = u.latitud,
+                                    longitud = u.longitud,
+                                    fechaRegistro = u.fechaRegistro,
+                                    estado = u.estado,
+                                    valoracion = u.valoracion,
+                                    tipo = u.tipo,
 
-            try
+                                    // Local
+                                    direccion = usuario != null ? usuario.direccion : null,
+                                    tipo_local = usuario != null ? usuario.tipo_local : null,
+                                    descripcion = usuario != null ? usuario.descripcion : null,
+                                    imagen = usuario != null ? usuario.imagen : null,
+                                    idUsuario = usuario != null ? usuario.idUsuario ?? 0 : 0,
+
+                                }).FirstOrDefaultAsync(); // Ejecuta la consulta y obtiene un solo resultado
+
+            if (musico == null)
             {
-                var locales = db.Local
-                    .Include(l => l.Usuario) // Incluye la información del Usuario relacionado con el Local
-                    .Where(l => l.Usuario.id == id) // Filtra por el correo del Usuario
-                    .ToList(); // Ejecuta la consulta y convierte el resultado en una lista
-
-
-
-                // Si no se encuentra el local, devolvemos un 404
-                if (locales == null || locales.Count == 0)
-                {
-                    result = NotFound();
-                }
-                else
-                {
-                    result = Ok(locales);
-                }
-            }
-            catch (DbUpdateException ex)
-            {
-                SqlException sqlException = (SqlException)ex.InnerException.InnerException;
-                string missatge = Clases.Utilitat.MensajeError(sqlException);
-                result = BadRequest(missatge);
-            }
-            catch (Exception ex)
-            {
-                result = InternalServerError(new Exception("Error al obtener la información del local.", ex));
+                return NotFound(); // Retorna 404 si no se encuentra
             }
 
-            return result;
+            return Ok(musico);
         }
 
 
@@ -144,33 +163,51 @@ namespace WebApplicationApiArmonii.Controllers
         }
 
         // POST: api/Local
-        [ResponseType(typeof(Local))]
-        public async Task<IHttpActionResult> PostLocal(Local local)
+        [ResponseType(typeof(bool))]
+        public Boolean PostLocal(DataTransferObjectMusico localDTO)
         {
-            if (!ModelState.IsValid)
+
+            Usuario usuario = new Usuario
             {
-                return BadRequest(ModelState);
+                nombre = localDTO.nombre,
+                correo = localDTO.correo,
+                contrasenya = localDTO.contrasenya,
+                telefono = localDTO.telefono,
+                latitud = localDTO.latitud,
+                longitud = localDTO.longitud,
+                fechaRegistro = DateTime.Now,
+                estado = localDTO.estado,
+                valoracion = localDTO.valoracion,
+                tipo = "Local"
+            };
+
+            db.Usuario.Add(usuario);
+            db.SaveChanges();
+
+            Usuario user = db.Usuario.FirstOrDefault(u => u.correo == usuario.correo);
+
+            // Verifica que el ID del usuario haya sido generado
+            if (usuario.id == 0)
+            {
+                throw new InvalidOperationException("El ID del usuario no fue generado correctamente.");
             }
+
+
+
+            Local local = new Local
+            {
+                direccion = localDTO.direccion,
+                tipo_local = localDTO.tipo_local,
+                descripcion = localDTO.descripcion,
+                imagen = localDTO.imagen,
+                idUsuario = user.id
+            };
 
             db.Local.Add(local);
+            db.SaveChanges();
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (LocalExists(local.id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return CreatedAtRoute("DefaultApi", new { id = local.id }, local);
+            return true;
         }
 
         // DELETE: api/Local/5

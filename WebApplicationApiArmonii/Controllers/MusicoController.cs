@@ -58,12 +58,6 @@ namespace WebApplicationApiArmonii.Controllers
         }
 
 
-
-
-        /*
-            
-        */
-
         // GET: api/Musico/5
         [ResponseType(typeof(Musico))]
         public async Task<IHttpActionResult> GetMusico(int id)
@@ -148,19 +142,44 @@ namespace WebApplicationApiArmonii.Controllers
 
         // PUT: api/Musico/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutMusico(int id, Musico musico)
+        public async Task<IHttpActionResult> PutMusico(int id, DataTransferObjectMusico musicoDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != musico.id)
+            var musicoExistente = await db.Musico.FindAsync(id);
+            if (musicoExistente == null)
             {
-                return BadRequest();
+                return Content(HttpStatusCode.NotFound, "Músico no encontrado.");
             }
 
-            db.Entry(musico).State = EntityState.Modified;
+            // Buscar el usuario relacionado al músico
+            var usuarioExistente = await db.Usuario.FindAsync(musicoExistente.idUsuario);
+            if (usuarioExistente == null)
+            {
+                return Content(HttpStatusCode.NotFound, "Usuario no encontrado.");
+            }
+
+            // === ACTUALIZAR CAMPOS DE USUARIO ===
+            usuarioExistente.nombre = musicoDTO.nombre;
+            usuarioExistente.correo = musicoDTO.correo;
+            usuarioExistente.contrasenya = musicoDTO.contrasenya;
+            usuarioExistente.telefono = musicoDTO.telefono;
+            usuarioExistente.latitud = musicoDTO.latitud;
+            usuarioExistente.longitud = musicoDTO.longitud;
+            usuarioExistente.estado = musicoDTO.estado;
+            usuarioExistente.valoracion = musicoDTO.valoracion;
+            usuarioExistente.tipo = musicoDTO.tipo;
+
+            // === ACTUALIZAR CAMPOS DE MUSICO ===
+            musicoExistente.apodo = musicoDTO.apodo;
+            musicoExistente.apellido = musicoDTO.apellido;
+            musicoExistente.genero = musicoDTO.genero;
+            musicoExistente.edad = musicoDTO.edad;
+            musicoExistente.biografia = musicoDTO.biografia;
+            musicoExistente.imagen = musicoDTO.imagen;
 
             try
             {
@@ -174,12 +193,14 @@ namespace WebApplicationApiArmonii.Controllers
                 }
                 else
                 {
-                    throw;                
+                    throw;
                 }
             }
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+
 
         // POST: api/Musico
         [ResponseType(typeof(bool))]
